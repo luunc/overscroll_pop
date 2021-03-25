@@ -5,3 +5,9 @@
 .pub/
 
 build/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
