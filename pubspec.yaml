@@ -2,7 +2,7 @@ name: overscroll_pop
 description: A Flutter widget for Scrollview, pop when overscroll
 version: 0.0.1
 author: Luunc
-homepage:
+homepage: https://github.com/luunc/overscroll_pop
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

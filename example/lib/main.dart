@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:overscroll_pop/overscroll_pop.dart';
 
+import 'package:overscroll_pop/overscroll_pop.dart';
 import 'package:overscroll_pop_example/horizontal_scrollview.dart';
 import 'package:overscroll_pop_example/vertical_scrollview.dart';
 
@@ -32,12 +32,12 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => VerticalScrollview(
+                      (BuildContext context, _, __) => VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                       ),
                     ),
                     child:
-                        Text('Vertical scrollview ${ScrollToPopOption.start}'),
+                        Text('Vertical scroll view ${ScrollToPopOption.start}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
@@ -46,11 +46,11 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => VerticalScrollview(
+                      (BuildContext context, _, __) => VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                       ),
                     ),
-                    child: Text('Vertical scrollview ${ScrollToPopOption.end}'),
+                    child: Text('Vertical scroll view ${ScrollToPopOption.end}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
@@ -59,12 +59,12 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => VerticalScrollview(
+                      (BuildContext context, _, __) => VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.both,
                       ),
                     ),
                     child:
-                        Text('Vertical scrollview ${ScrollToPopOption.both}'),
+                        Text('Vertical scroll view ${ScrollToPopOption.both}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => VerticalScrollview(
+                      (BuildContext context, _, __) => VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                         dragToPopDirection: DragToPopDirection.toLeft,
                       ),
@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
                       child: Column(
                         children: [
                           Text(
-                              'Vertical scrollview ${ScrollToPopOption.start}'),
+                              'Vertical scroll view ${ScrollToPopOption.start}'),
                           Text('${DragToPopDirection.toLeft}'),
                         ],
                       ),
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => VerticalScrollview(
+                      (BuildContext context, _, __) => VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                         dragToPopDirection: DragToPopDirection.toRight,
                       ),
@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                       child: Column(
                         children: [
                           Text(
-                              'Vertical scrollview ${ScrollToPopOption.start}'),
+                              'Vertical scroll view ${ScrollToPopOption.start}'),
                           Text('${DragToPopDirection.toRight}'),
                         ],
                       ),
@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => VerticalScrollview(
+                      (BuildContext context, _, __) => VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                         dragToPopDirection: DragToPopDirection.horizontal,
                       ),
@@ -128,7 +128,7 @@ class _MyAppState extends State<MyApp> {
                       child: Column(
                         children: [
                           Text(
-                              'Vertical scrollview ${ScrollToPopOption.start}'),
+                              'Vertical scroll view ${ScrollToPopOption.start}'),
                           Text('${DragToPopDirection.horizontal}'),
                         ],
                       ),
@@ -141,12 +141,12 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollview(
+                      (BuildContext context, _, __) => HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                       ),
                     ),
                     child: Text(
-                        'Horizontal scrollview ${ScrollToPopOption.start}'),
+                        'Horizontal scroll view ${ScrollToPopOption.start}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
@@ -155,12 +155,12 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollview(
+                      (BuildContext context, _, __) => HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                       ),
                     ),
                     child:
-                        Text('Horizontal scrollview ${ScrollToPopOption.end}'),
+                        Text('Horizontal scroll view ${ScrollToPopOption.end}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
@@ -169,12 +169,12 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollview(
+                      (BuildContext context, _, __) => HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.both,
                       ),
                     ),
                     child:
-                        Text('Horizontal scrollview ${ScrollToPopOption.both}'),
+                        Text('Horizontal scroll view ${ScrollToPopOption.both}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
@@ -183,7 +183,7 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollview(
+                      (BuildContext context, _, __) => HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                         dragToPopDirection: DragToPopDirection.toTop,
                       ),
@@ -192,7 +192,7 @@ class _MyAppState extends State<MyApp> {
                       child: Column(
                         children: [
                           Text(
-                              'Horizontal scrollview ${ScrollToPopOption.end}'),
+                              'Horizontal scroll view ${ScrollToPopOption.end}'),
                           Text(DragToPopDirection.toTop.toString()),
                         ],
                       ),
@@ -206,7 +206,7 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollview(
+                      (BuildContext context, _, __) => HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                         dragToPopDirection: DragToPopDirection.toBottom,
                       ),
@@ -215,7 +215,7 @@ class _MyAppState extends State<MyApp> {
                       child: Column(
                         children: [
                           Text(
-                              'Horizontal scrollview ${ScrollToPopOption.end}'),
+                              'Horizontal scroll view ${ScrollToPopOption.end}'),
                           Text(DragToPopDirection.toBottom.toString()),
                         ],
                       ),
@@ -229,7 +229,7 @@ class _MyAppState extends State<MyApp> {
                   child: ElevatedButton(
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollview(
+                      (BuildContext context, _, __) => HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                         dragToPopDirection: DragToPopDirection.vertical,
                       ),
@@ -238,7 +238,7 @@ class _MyAppState extends State<MyApp> {
                       child: Column(
                         children: [
                           Text(
-                              'Horizontal scrollview ${ScrollToPopOption.end}'),
+                              'Horizontal scroll view ${ScrollToPopOption.end}'),
                           Text(DragToPopDirection.vertical.toString()),
                         ],
                       ),

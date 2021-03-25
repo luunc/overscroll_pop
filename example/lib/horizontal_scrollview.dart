@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:overscroll_pop/overscroll_pop.dart';
 
-class HorizontalScrollview extends StatelessWidget {
+class HorizontalScrollView extends StatelessWidget {
   final ScrollToPopOption scrollToPopOption;
   final DragToPopDirection? dragToPopDirection;
 
-  const HorizontalScrollview({
+  const HorizontalScrollView({
     Key? key,
     this.scrollToPopOption = ScrollToPopOption.start,
     this.dragToPopDirection,
@@ -27,7 +27,7 @@ class HorizontalScrollview extends StatelessWidget {
               tag: 'h $scrollToPopOption${dragToPopDirection ?? ''}',
               child: AppBar(
                 title: Text(
-                  'Horizontal Scrollview',
+                  'Horizontal ScrollView',
                   overflow: TextOverflow.visible,
                 ),
               ),
