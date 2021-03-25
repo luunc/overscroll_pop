@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - overscroll_pop (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - overscroll_pop (from `.symlinks/plugins/overscroll_pop/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  overscroll_pop:
+    :path: ".symlinks/plugins/overscroll_pop/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  overscroll_pop: 6b68c9c80ef299110adc20933cde8eeae716c235
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0
