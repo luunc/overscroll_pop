@@ -1,6 +1,6 @@
 name: overscroll_pop
 description: A Flutter widget for Scrollview, pop when overscroll like Pinterest and Instagram app on iOS
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/luunc/overscroll_pop
 
 environment:

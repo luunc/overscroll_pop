@@ -8,7 +8,7 @@ A Flutter widget for Scrollview, pop when overscroll like Instagram, Pinterest, 
 
 ## Getting Started
 
-1) include the package to your project as dependency:
+1) Include the package to your project as dependency:
 
 ```
 dependencies:
@@ -16,8 +16,9 @@ dependencies:
 ```
 
 
-2) Use the widget
-    Wrap your `Scaffold` or top widget by `OverscrollPop`, every `ScrollView` widget (`Listview`, `GridView`, `PageView`, `CustomScrollView`, ...) which has scroll physics `ClampingScrollPhysics`**(important)** will have overscroll to pop effect.
+2) Use the widget:
+
+Wrap your `Scaffold` or top widget by `OverscrollPop`, every `ScrollView` widget (`Listview`, `GridView`, `PageView`, `CustomScrollView`, ...) which has scroll physics `ClampingScrollPhysics`**(important)** will have overscroll to pop effect.
 
 ```dart
     MaterialApp(
@@ -106,7 +107,7 @@ dependencies:
 
         ![VStart](https://media.giphy.com/media/lL2VFks4VVMNlfuwP0/giphy.gif) ![HStart](https://media.giphy.com/media/p27QKg0HJnutxKcsjV/giphy.gif)
 
-    - To enable the end edge (or both end) for overscroll to pop, set `scrollToPopOption` to `ScrollToPopOption.end` (or `ScrollToPopOption.both`)
+    - To enable the end edge (or both edges) for overscroll to pop, set `scrollToPopOption` to `ScrollToPopOption.end` (or `ScrollToPopOption.both`)
         ```
         OverscrollPop(
           scrollToPopOption: ScrollToPopOption.end, // or ScrollToPopOption.both
