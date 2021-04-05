@@ -4,10 +4,10 @@ import 'package:overscroll_pop/overscroll_pop.dart';
 
 class VerticalScrollView extends StatelessWidget {
   final ScrollToPopOption scrollToPopOption;
-  final DragToPopDirection? dragToPopDirection;
+  final DragToPopDirection dragToPopDirection;
 
   const VerticalScrollView({
-    Key? key,
+    Key key,
     this.scrollToPopOption = ScrollToPopOption.start,
     this.dragToPopDirection,
   }) : super(key: key);

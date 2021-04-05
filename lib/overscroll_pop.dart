@@ -16,12 +16,12 @@ enum DragToPopDirection {
 
 class OverscrollPop extends StatefulWidget {
   final Widget child;
-  final DragToPopDirection? dragToPopDirection;
+  final DragToPopDirection dragToPopDirection;
   final ScrollToPopOption scrollToPopOption;
 
   const OverscrollPop({
-    Key? key,
-    required this.child,
+    Key key,
+    @required this.child,
     this.dragToPopDirection,
     this.scrollToPopOption = ScrollToPopOption.start,
   }) : super(key: key);
@@ -32,10 +32,10 @@ class OverscrollPop extends StatefulWidget {
 
 class _OverscrollPopState extends State<OverscrollPop>
     with SingleTickerProviderStateMixin {
-  AnimationController? _animationController;
-  Animation<Offset>? _animation;
-  Offset? _dragOffset;
-  Offset? _previousPosition;
+  AnimationController _animationController;
+  Animation<Offset> _animation;
+  Offset _dragOffset;
+  Offset _previousPosition;
   bool _isDraggingHorizontalStart = false;
   bool _isDraggingHorizontal = false;
 
@@ -51,7 +51,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     _animation = Tween<Offset>(
       begin: Offset(0.0, 0.0),
       end: Offset(0.0, 0.0),
-    ).animate(_animationController!);
+    ).animate(_animationController);
   }
 
   @override
@@ -75,7 +75,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 
   @override
   Widget build(BuildContext context) {
-    final animation = _animation!;
+    final animation = _animation;
 
     Widget childWidget = widget.child;
 
@@ -92,7 +92,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 
     return AnimatedBuilder(
       animation: animation,
-      builder: (_, Widget? child) {
+      builder: (_, Widget child) {
         Offset finalOffset = _dragOffset ?? Offset(0.0, 0.0);
         if (animation.status == AnimationStatus.forward)
           finalOffset = animation.value;
@@ -143,9 +143,9 @@ class _OverscrollPopState extends State<OverscrollPop>
     return false;
   }
 
-  bool _onOverScrollDragEnd(DragEndDetails? dragEndDetails) {
+  bool _onOverScrollDragEnd(DragEndDetails dragEndDetails) {
     if (_dragOffset == null) return false;
-    final dragOffset = _dragOffset!;
+    final dragOffset = _dragOffset;
     final screenSize = MediaQuery.of(context).size;
 
     if (dragEndDetails != null) {
@@ -169,14 +169,14 @@ class _OverscrollPopState extends State<OverscrollPop>
       _animation = Tween<Offset>(
         begin: Offset(dragOffset.dx, dragOffset.dy),
         end: Offset(0.0, 0.0),
-      ).animate(_animationController!);
+      ).animate(_animationController);
     });
 
-    _animationController?.forward();
+    _animationController.forward();
     return false;
   }
 
-  bool _onScrollDragUpdate(DragUpdateDetails? dragUpdateDetails) {
+  bool _onScrollDragUpdate(DragUpdateDetails dragUpdateDetails) {
     if (_dragOffset == null) return false;
     if (dragUpdateDetails == null) return false;
 
@@ -209,7 +209,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     }
 
     final currentPosition = dragUpdateDetails.globalPosition;
-    final previousPosition = _previousPosition!;
+    final previousPosition = _previousPosition;
 
     final newX =
         (_dragOffset?.dx ?? 0.0) + (currentPosition.dx - previousPosition.dx);
@@ -224,7 +224,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 
   bool _onDragUpdate(DragUpdateDetails dragUpdateDetails) {
     if (!_isDraggingHorizontal) return false;
-    final previousPosition = _previousPosition!;
+    final previousPosition = _previousPosition;
 
     if (_isDraggingHorizontalStart) {
       _isDraggingHorizontalStart = false;
@@ -262,7 +262,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 
   /////////////////////////////////////////////////////////////////////////////
 
-  GestureDragStartCallback? getOnHorizontalDragStartFunction() {
+  GestureDragStartCallback getOnHorizontalDragStartFunction() {
     switch (widget.dragToPopDirection) {
       case DragToPopDirection.horizontal:
       case DragToPopDirection.toLeft:
@@ -277,7 +277,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     }
   }
 
-  GestureDragUpdateCallback? getOnHorizontalDragUpdateFunction() {
+  GestureDragUpdateCallback getOnHorizontalDragUpdateFunction() {
     switch (widget.dragToPopDirection) {
       case DragToPopDirection.horizontal:
       case DragToPopDirection.toLeft:
@@ -288,7 +288,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     }
   }
 
-  GestureDragEndCallback? getOnHorizontalDragEndFunction() {
+  GestureDragEndCallback getOnHorizontalDragEndFunction() {
     switch (widget.dragToPopDirection) {
       case DragToPopDirection.horizontal:
       case DragToPopDirection.toLeft:
@@ -301,7 +301,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 
   ////////////////////////
 
-  GestureDragStartCallback? getOnVerticalDragStartFunction() {
+  GestureDragStartCallback getOnVerticalDragStartFunction() {
     switch (widget.dragToPopDirection) {
       case DragToPopDirection.vertical:
       case DragToPopDirection.toTop:
@@ -316,7 +316,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     }
   }
 
-  GestureDragUpdateCallback? getOnVerticalDragUpdateFunction() {
+  GestureDragUpdateCallback getOnVerticalDragUpdateFunction() {
     switch (widget.dragToPopDirection) {
       case DragToPopDirection.vertical:
       case DragToPopDirection.toTop:
@@ -327,7 +327,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     }
   }
 
-  GestureDragEndCallback? getOnVerticalDragEndFunction() {
+  GestureDragEndCallback getOnVerticalDragEndFunction() {
     switch (widget.dragToPopDirection) {
       case DragToPopDirection.vertical:
       case DragToPopDirection.toTop:
