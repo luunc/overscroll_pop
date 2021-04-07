@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:overscroll_pop/overscroll_pop.dart';
+
+import 'package:overscroll_pop_example/hero_animation_asset.dart';
 import 'package:overscroll_pop_example/horizontal_scrollview.dart';
 import 'package:overscroll_pop_example/vertical_scrollview.dart';
 
@@ -28,6 +30,20 @@ class _MyAppState extends State<MyApp> {
                   height: 32.0,
                 ),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
+                  flightShuttleBuilder: (
+                    BuildContext flightContext,
+                    Animation<double> animation,
+                    HeroFlightDirection flightDirection,
+                    BuildContext fromHeroContext,
+                    BuildContext toHeroContext,
+                  ) {
+                    final Hero toHero = toHeroContext.widget as Hero;
+                    return SizeTransition(
+                      sizeFactor: animation,
+                      child: toHero.child,
+                    );
+                  },
                   tag: ScrollToPopOption.start.toString(),
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -42,6 +58,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: ScrollToPopOption.end.toString(),
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -50,11 +67,13 @@ class _MyAppState extends State<MyApp> {
                         scrollToPopOption: ScrollToPopOption.end,
                       ),
                     ),
-                    child: Text('Vertical scroll view ${ScrollToPopOption.end}'),
+                    child:
+                        Text('Vertical scroll view ${ScrollToPopOption.end}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: ScrollToPopOption.both.toString(),
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -69,6 +88,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: '${ScrollToPopOption.start}${DragToPopDirection.toLeft}',
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -91,6 +111,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag:
                       '${ScrollToPopOption.start}${DragToPopDirection.toRight}',
                   child: ElevatedButton(
@@ -114,6 +135,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag:
                       '${ScrollToPopOption.start}${DragToPopDirection.horizontal}',
                   child: ElevatedButton(
@@ -137,6 +159,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.start}',
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -151,6 +174,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.end}',
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -165,6 +189,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.both}',
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -173,12 +198,13 @@ class _MyAppState extends State<MyApp> {
                         scrollToPopOption: ScrollToPopOption.both,
                       ),
                     ),
-                    child:
-                        Text('Horizontal scroll view ${ScrollToPopOption.both}'),
+                    child: Text(
+                        'Horizontal scroll view ${ScrollToPopOption.both}'),
                   ),
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.end}${DragToPopDirection.toTop}',
                   child: ElevatedButton(
                     onPressed: () => pushPage(
@@ -201,6 +227,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag:
                       'h ${ScrollToPopOption.end}${DragToPopDirection.toBottom}',
                   child: ElevatedButton(
@@ -224,6 +251,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 const SizedBox(height: 32.0),
                 Hero(
+                  createRectTween: HeroAnimationAsset.customTweenRect,
                   tag:
                       'h ${ScrollToPopOption.end}${DragToPopDirection.vertical}',
                   child: ElevatedButton(
