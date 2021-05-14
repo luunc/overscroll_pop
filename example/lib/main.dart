@@ -17,12 +17,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Overscroll Example'),
-        ),
-        body: Builder(
-          builder: (c) => SingleChildScrollView(
+      home: Builder(
+        builder: (c) => Scaffold(
+          appBar: AppBar(
+            title: const Text('Overscroll Example'),
+          ),
+          body: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
@@ -273,7 +273,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(c).padding.bottom),
+                SizedBox(height: MediaQuery.of(c).padding.bottom + 64.0),
               ],
             ),
           ),

@@ -32,27 +32,20 @@ class OverscrollPop extends StatefulWidget {
 
 class _OverscrollPopState extends State<OverscrollPop>
     with SingleTickerProviderStateMixin {
-  AnimationController? _animationController;
-  Animation<Offset>? _animation;
+  late final AnimationController? _animationController = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: 200),
+  )..addStatusListener(_onAnimationEnd);
+
+  late Animation<Offset> _animation = Tween<Offset>(
+    begin: Offset.zero,
+    end: Offset.zero,
+  ).animate(_animationController!);
+
   Offset? _dragOffset;
   Offset? _previousPosition;
   bool _isDraggingHorizontalStart = false;
   bool _isDraggingHorizontal = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 200),
-    );
-    _animationController?.addStatusListener(_onAnimationEnd);
-
-    _animation = Tween<Offset>(
-      begin: Offset(0.0, 0.0),
-      end: Offset(0.0, 0.0),
-    ).animate(_animationController!);
-  }
 
   @override
   void dispose() {
@@ -75,8 +68,6 @@ class _OverscrollPopState extends State<OverscrollPop>
 
   @override
   Widget build(BuildContext context) {
-    final animation = _animation!;
-
     Widget childWidget = widget.child;
 
     if (widget.dragToPopDirection != null)
@@ -91,11 +82,11 @@ class _OverscrollPopState extends State<OverscrollPop>
       );
 
     return AnimatedBuilder(
-      animation: animation,
+      animation: _animation,
       builder: (_, Widget? child) {
         Offset finalOffset = _dragOffset ?? Offset(0.0, 0.0);
-        if (animation.status == AnimationStatus.forward)
-          finalOffset = animation.value;
+        if (_animation.status == AnimationStatus.forward)
+          finalOffset = _animation.value;
 
         final maxOpacityWhenDrag = 0.75;
         final bgOpacity = finalOffset.distance == 0.0
@@ -113,7 +104,7 @@ class _OverscrollPopState extends State<OverscrollPop>
               );
 
         return Container(
-          color: Colors.black.withOpacity(math.max(bgOpacity, 0.0)),
+          color: Colors.black.withOpacity(bgOpacity.clamp(0.0, 1.0)),
           child: Transform.scale(
             scale: scale,
             child: Transform.translate(
@@ -146,6 +137,7 @@ class _OverscrollPopState extends State<OverscrollPop>
   bool _onOverScrollDragEnd(DragEndDetails? dragEndDetails) {
     if (_dragOffset == null) return false;
     final dragOffset = _dragOffset!;
+
     final screenSize = MediaQuery.of(context).size;
 
     if (dragEndDetails != null) {
