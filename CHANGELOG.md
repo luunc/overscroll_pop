@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Update to latest dart sdk
+
 ## 0.0.4
 
 * Add demo gif
