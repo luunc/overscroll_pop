@@ -3,8 +3,7 @@
 A Flutter widget for Scrollview, pop when overscroll like Instagram, Pinterest, ...
 
 
-![Demo](https://media.giphy.com/media/lL2VFks4VVMNlfuwP0/giphy.gif)  ![Demo](https://media.giphy.com/media/djg5Hc5b3ArVgb0pCP/giphy.gif)
-
+![Demo](https://media.giphy.com/media/lL2VFks4VVMNlfuwP0/giphy.gif) ![Demo](https://media.giphy.com/media/djg5Hc5b3ArVgb0pCP/giphy.gif) ![Demo](https://media.giphy.com/media/suIR06ewXDsrwWFszb/giphy.gif)
 
 ## Getting Started
 
@@ -101,6 +100,8 @@ Wrap your `Scaffold` or top widget by `OverscrollPop`, every `ScrollView` widget
       }
     }
 ```
+
+If your `Scaffold` does not contain any ScrollView and want to achieve drag to pop effect, wrap your `Scaffold` or top widget by `DragToPop` instead.
 
 3) Configure scroll direction and add extra drag to pop:
     - By default, the effect only apply for overscroll at the start of `ScrollView` (top edge of vertical scroll, left edge of horizontal scroll)

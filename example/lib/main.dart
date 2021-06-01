@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:overscroll_pop/overscroll_pop.dart';
 
+import 'package:overscroll_pop_example/full_screen_drag_to_pop_example.dart';
 import 'package:overscroll_pop_example/hero_animation_asset.dart';
 import 'package:overscroll_pop_example/horizontal_scrollview.dart';
 import 'package:overscroll_pop_example/vertical_scrollview.dart';
@@ -277,6 +278,11 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
           ),
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.lightGreen,
+            onPressed: () => pushFullScreenDragToPop(c),
+            label: Text("Fullscreen drag to pop"),
+          ),
         ),
       ),
     );
@@ -292,4 +298,7 @@ class _MyAppState extends State<MyApp> {
           pageBuilder: builder,
         ),
       );
+
+  void pushFullScreenDragToPop(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (_) => FullScreenDragToPopExample()));
 }

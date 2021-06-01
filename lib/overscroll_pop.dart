@@ -4,6 +4,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+/////////////////////////////////////////////////////////////////////////////
+export 'package:overscroll_pop/drag_to_pop.dart';
+//////////////////////////////////////////////////////////////////////////////
+
 enum ScrollToPopOption { start, end, both }
 enum DragToPopDirection {
   toTop,
@@ -44,8 +48,8 @@ class _OverscrollPopState extends State<OverscrollPop>
 
   Offset? _dragOffset;
   Offset? _previousPosition;
-  bool _isDraggingHorizontalStart = false;
-  bool _isDraggingHorizontal = false;
+  bool _isDraggingToPopStart = false;
+  bool _isDraggingToPop = false;
 
   @override
   void dispose() {
@@ -60,8 +64,8 @@ class _OverscrollPopState extends State<OverscrollPop>
       setState(() {
         _dragOffset = null;
         _previousPosition = null;
-        _isDraggingHorizontal = false;
-        _isDraggingHorizontalStart = false;
+        _isDraggingToPop = false;
+        _isDraggingToPopStart = false;
       });
     }
   }
@@ -215,36 +219,36 @@ class _OverscrollPopState extends State<OverscrollPop>
   }
 
   bool _onDragUpdate(DragUpdateDetails dragUpdateDetails) {
-    if (!_isDraggingHorizontal) return false;
+    if (!_isDraggingToPop) return false;
     final previousPosition = _previousPosition!;
 
-    if (_isDraggingHorizontalStart) {
-      _isDraggingHorizontalStart = false;
+    if (_isDraggingToPopStart) {
+      _isDraggingToPopStart = false;
 
       final currentPosition = dragUpdateDetails.globalPosition;
       final dragToPopDirection = widget.dragToPopDirection;
 
       if (dragToPopDirection == DragToPopDirection.toRight &&
           previousPosition.dx > currentPosition.dx) {
-        _isDraggingHorizontal = false;
+        _isDraggingToPop = false;
         return false;
       }
 
       if (dragToPopDirection == DragToPopDirection.toLeft &&
           previousPosition.dx < currentPosition.dx) {
-        _isDraggingHorizontal = false;
+        _isDraggingToPop = false;
         return false;
       }
 
       if (dragToPopDirection == DragToPopDirection.toTop &&
           previousPosition.dy < currentPosition.dy) {
-        _isDraggingHorizontal = false;
+        _isDraggingToPop = false;
         return false;
       }
 
       if (dragToPopDirection == DragToPopDirection.toBottom &&
           previousPosition.dy > currentPosition.dy) {
-        _isDraggingHorizontal = false;
+        _isDraggingToPop = false;
         return false;
       }
     }
@@ -260,8 +264,8 @@ class _OverscrollPopState extends State<OverscrollPop>
       case DragToPopDirection.toLeft:
       case DragToPopDirection.toRight:
         return (DragStartDetails dragDetails) {
-          _isDraggingHorizontalStart = true;
-          _isDraggingHorizontal = true;
+          _isDraggingToPopStart = true;
+          _isDraggingToPop = true;
           _previousPosition = dragDetails.globalPosition;
         };
       default:
@@ -299,8 +303,8 @@ class _OverscrollPopState extends State<OverscrollPop>
       case DragToPopDirection.toTop:
       case DragToPopDirection.toBottom:
         return (DragStartDetails dragDetails) {
-          _isDraggingHorizontalStart = true;
-          _isDraggingHorizontal = true;
+          _isDraggingToPopStart = true;
+          _isDraggingToPop = true;
           _previousPosition = dragDetails.globalPosition;
         };
       default:

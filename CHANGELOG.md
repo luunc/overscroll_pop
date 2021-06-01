@@ -1,3 +1,8 @@
+## 0.0.6
+
+* Add DragToPop widget for scaffold not using ScrollView
+* Refactor
+
 ## 0.0.5
 
 * Update to latest dart sdk
