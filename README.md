@@ -101,7 +101,7 @@ Wrap your `Scaffold` or top widget by `OverscrollPop`, every `ScrollView` widget
     }
 ```
 
-If your `Scaffold` does not contain any ScrollView and want to achieve drag to pop effect, wrap your `Scaffold` or top widget by `DragToPop` instead.
+If your `Scaffold` does not contain any ScrollView and want to achieve drag to pop effect, wrap your `Scaffold` or top widget by `DragToPop` instead [(Example)](https://github.com/luunc/overscroll_pop/blob/main/example/lib/full_screen_drag_to_pop_example.dart).
 
 3) Configure scroll direction and add extra drag to pop:
     - By default, the effect only apply for overscroll at the start of `ScrollView` (top edge of vertical scroll, left edge of horizontal scroll)
