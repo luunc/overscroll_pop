@@ -27,17 +27,10 @@ class FullScreenDragToPopExample extends StatelessWidget {
           mainAxisSpacing: 1.0,
         ),
         itemBuilder: (_, int index) => GestureDetector(
-          onTap: () => Navigator.of(context).push(
-            PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 250),
-              reverseTransitionDuration: const Duration(milliseconds: 250),
-              fullscreenDialog: true,
-              opaque: false,
-              transitionsBuilder:
-                  (_, Animation<double> animation, __, Widget child) =>
-                      FadeTransition(opacity: animation, child: child),
-              pageBuilder: (_, __, ___) => FullScreenDetail(url: images[index]),
-            ),
+          onTap: () => pushDragToPopRoute(
+            context: context,
+            child: FullScreenDetail(url: images[index]),
+
           ),
           child: Hero(
             tag: images[index],
@@ -66,24 +59,22 @@ class FullScreenDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DragToPop(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(24.0),
-        child: Scaffold(
-          backgroundColor: Colors.black,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-          ),
-          body: Center(
-            child: Hero(
-              tag: url,
-              createRectTween: HeroAnimationAsset.customTweenRect,
-              child: Image.network(
-                url,
-                fit: BoxFit.cover,
-              ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24.0),
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+        ),
+        body: Center(
+          child: Hero(
+            tag: url,
+            createRectTween: HeroAnimationAsset.customTweenRect,
+            child: Image.network(
+              url,
+              fit: BoxFit.cover,
             ),
           ),
         ),

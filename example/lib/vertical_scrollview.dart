@@ -23,8 +23,12 @@ class VerticalScrollView extends StatelessWidget {
         tag: '$scrollToPopOption${dragToPopDirection ?? ''}',
         child: Container(
           clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.0)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.0),
+            color: Colors.white,
+          ),
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(kToolbarHeight),
               child: AppBar(

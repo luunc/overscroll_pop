@@ -23,7 +23,10 @@ class HorizontalScrollView extends StatelessWidget {
         tag: 'h $scrollToPopOption${dragToPopDirection ?? ''}',
         child: Container(
           clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.0)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.0),
+            color: Colors.white,
+          ),
           child: Scaffold(
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(kToolbarHeight),
@@ -38,6 +41,7 @@ class HorizontalScrollView extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics: const ClampingScrollPhysics(),
               itemBuilder: (_, index) => Container(
+                margin: const EdgeInsets.all(0.1),
                 color: index % 2 == 0 ? Colors.cyanAccent : Colors.orangeAccent,
                 child: Center(
                   child: Column(

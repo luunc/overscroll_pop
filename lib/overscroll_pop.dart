@@ -3,6 +3,7 @@ library overscroll_pop;
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:overscroll_pop/drag_to_pop.dart';
 
 /////////////////////////////////////////////////////////////////////////////
 export 'package:overscroll_pop/drag_to_pop.dart';
@@ -20,6 +21,7 @@ enum DragToPopDirection {
 
 class OverscrollPop extends StatefulWidget {
   final Widget child;
+  final bool enable;
   final DragToPopDirection? dragToPopDirection;
   final ScrollToPopOption scrollToPopOption;
 
@@ -28,6 +30,7 @@ class OverscrollPop extends StatefulWidget {
     required this.child,
     this.dragToPopDirection,
     this.scrollToPopOption = ScrollToPopOption.start,
+    this.enable = true,
   }) : super(key: key);
 
   @override
@@ -73,6 +76,8 @@ class _OverscrollPopState extends State<OverscrollPop>
   @override
   Widget build(BuildContext context) {
     Widget childWidget = widget.child;
+
+    if (!widget.enable) return childWidget;
 
     if (widget.dragToPopDirection != null)
       childWidget = GestureDetector(
@@ -334,3 +339,63 @@ class _OverscrollPopState extends State<OverscrollPop>
     }
   }
 }
+
+Future<dynamic> pushOverscrollRoute({
+  required BuildContext context,
+  required Widget child,
+  bool fullscreenDialog = false,
+  RouteSettings? settings,
+  Duration transitionDuration = const Duration(milliseconds: 250),
+  Duration reverseTransitionDuration = const Duration(milliseconds: 250),
+  Color? barrierColor,
+  String? barrierLabel,
+  bool barrierDismissible = false,
+  bool maintainState = true,
+}) async =>
+    await Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: transitionDuration,
+        reverseTransitionDuration: reverseTransitionDuration,
+        fullscreenDialog: fullscreenDialog,
+        opaque: false,
+        transitionsBuilder:
+            (_, Animation<double> animation, __, Widget child) =>
+                FadeTransition(opacity: animation, child: child),
+        pageBuilder: (_, __, ___) => OverscrollPop(child: child),
+        maintainState: maintainState,
+        barrierColor: barrierColor,
+        barrierLabel: barrierLabel,
+        barrierDismissible: barrierDismissible,
+        settings: settings,
+      ),
+    );
+
+Future<dynamic> pushDragToPopRoute({
+  required BuildContext context,
+  required Widget child,
+  bool fullscreenDialog = false,
+  RouteSettings? settings,
+  Duration transitionDuration = const Duration(milliseconds: 250),
+  Duration reverseTransitionDuration = const Duration(milliseconds: 250),
+  Color? barrierColor,
+  String? barrierLabel,
+  bool barrierDismissible = false,
+  bool maintainState = true,
+}) async =>
+    await Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: transitionDuration,
+        reverseTransitionDuration: reverseTransitionDuration,
+        fullscreenDialog: fullscreenDialog,
+        opaque: false,
+        transitionsBuilder:
+            (_, Animation<double> animation, __, Widget child) =>
+                FadeTransition(opacity: animation, child: child),
+        pageBuilder: (_, __, ___) => DragToPop(child: child),
+        maintainState: maintainState,
+        barrierColor: barrierColor,
+        barrierLabel: barrierLabel,
+        barrierDismissible: barrierDismissible,
+        settings: settings,
+      ),
+    );

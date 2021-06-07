@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class DragToPop extends StatefulWidget {
   final Widget child;
+  final bool enable;
 
   const DragToPop({
     Key? key,
     required this.child,
+    this.enable = true,
   }) : super(key: key);
 
   @override
@@ -48,6 +50,8 @@ class _DragToPopState extends State<DragToPop>
 
   @override
   Widget build(BuildContext context) {
+    if (!widget.enable) return widget.child;
+
     return AnimatedBuilder(
       animation: _animation,
       builder: (_, Widget? child) {
