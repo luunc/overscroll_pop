@@ -1,3 +1,8 @@
+## 0.0.7
+
+* Add push route helper
+* Add enable parameter
+
 ## 0.0.6
 
 * Add DragToPop widget for scaffold not using ScrollView
