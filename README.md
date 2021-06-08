@@ -108,6 +108,8 @@ Quick push route config helper:
 pushOverscrollRoute(
     context: context,
     child: <your scaffold/widget>,
+    // scrollToPopOption: <your ScrollToPopOption>,
+    // dragToPopDirection: <your DragToPopDirection>,
     // other route configs
 )
 

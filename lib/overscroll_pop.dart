@@ -9,7 +9,7 @@ import 'package:overscroll_pop/drag_to_pop.dart';
 export 'package:overscroll_pop/drag_to_pop.dart';
 //////////////////////////////////////////////////////////////////////////////
 
-enum ScrollToPopOption { start, end, both }
+enum ScrollToPopOption { start, end, both, none }
 enum DragToPopDirection {
   toTop,
   toBottom,
@@ -90,6 +90,15 @@ class _OverscrollPopState extends State<OverscrollPop>
         child: widget.child,
       );
 
+    if (widget.scrollToPopOption != ScrollToPopOption.none)
+      childWidget = NotificationListener<OverscrollNotification>(
+        onNotification: _onOverScrollDragUpdate,
+        child: NotificationListener<ScrollNotification>(
+          onNotification: _onScroll,
+          child: childWidget,
+        ),
+      );
+
     return AnimatedBuilder(
       animation: _animation,
       builder: (_, Widget? child) {
@@ -123,13 +132,7 @@ class _OverscrollPopState extends State<OverscrollPop>
           ),
         );
       },
-      child: NotificationListener<OverscrollNotification>(
-        onNotification: _onOverScrollDragUpdate,
-        child: NotificationListener<ScrollNotification>(
-          onNotification: _onScroll,
-          child: childWidget,
-        ),
-      ),
+      child: childWidget,
     );
   }
 
@@ -343,6 +346,8 @@ class _OverscrollPopState extends State<OverscrollPop>
 Future<dynamic> pushOverscrollRoute({
   required BuildContext context,
   required Widget child,
+  ScrollToPopOption scrollToPopOption = ScrollToPopOption.start,
+  DragToPopDirection? dragToPopDirection,
   bool fullscreenDialog = false,
   RouteSettings? settings,
   Duration transitionDuration = const Duration(milliseconds: 250),
@@ -358,10 +363,29 @@ Future<dynamic> pushOverscrollRoute({
         reverseTransitionDuration: reverseTransitionDuration,
         fullscreenDialog: fullscreenDialog,
         opaque: false,
-        transitionsBuilder:
-            (_, Animation<double> animation, __, Widget child) =>
-                FadeTransition(opacity: animation, child: child),
-        pageBuilder: (_, __, ___) => OverscrollPop(child: child),
+        transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          _,
+          Widget child,
+        ) {
+          if (animation.status == AnimationStatus.reverse ||
+              animation.status == AnimationStatus.dismissed)
+            return FadeTransition(
+              opacity: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInCirc,
+              ),
+              child: child,
+            );
+
+          return FadeTransition(opacity: animation, child: child);
+        },
+        pageBuilder: (_, __, ___) => OverscrollPop(
+          dragToPopDirection: dragToPopDirection,
+          scrollToPopOption: scrollToPopOption,
+          child: child,
+        ),
         maintainState: maintainState,
         barrierColor: barrierColor,
         barrierLabel: barrierLabel,
@@ -388,9 +412,24 @@ Future<dynamic> pushDragToPopRoute({
         reverseTransitionDuration: reverseTransitionDuration,
         fullscreenDialog: fullscreenDialog,
         opaque: false,
-        transitionsBuilder:
-            (_, Animation<double> animation, __, Widget child) =>
-                FadeTransition(opacity: animation, child: child),
+        transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          _,
+          Widget child,
+        ) {
+          if (animation.status == AnimationStatus.reverse ||
+              animation.status == AnimationStatus.dismissed)
+            return FadeTransition(
+              opacity: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInExpo,
+              ),
+              child: child,
+            );
+
+          return FadeTransition(opacity: animation, child: child);
+        },
         pageBuilder: (_, __, ___) => DragToPop(child: child),
         maintainState: maintainState,
         barrierColor: barrierColor,

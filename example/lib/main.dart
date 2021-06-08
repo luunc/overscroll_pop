@@ -47,9 +47,10 @@ class _MyAppState extends State<MyApp> {
                   },
                   tag: ScrollToPopOption.start.toString(),
                   child: ElevatedButton(
-                    onPressed: () => pushPage(
-                      c,
-                      (BuildContext context, _, __) => VerticalScrollView(
+                    onPressed: () => pushOverscrollRoute(
+                      context: c,
+                      scrollToPopOption: ScrollToPopOption.start,
+                      child: VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                       ),
                     ),
@@ -62,9 +63,10 @@ class _MyAppState extends State<MyApp> {
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: ScrollToPopOption.end.toString(),
                   child: ElevatedButton(
-                    onPressed: () => pushPage(
-                      c,
-                      (BuildContext context, _, __) => VerticalScrollView(
+                    onPressed: () => pushOverscrollRoute(
+                      context: c,
+                      scrollToPopOption: ScrollToPopOption.end,
+                      child: VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                       ),
                     ),
@@ -77,9 +79,10 @@ class _MyAppState extends State<MyApp> {
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: ScrollToPopOption.both.toString(),
                   child: ElevatedButton(
-                    onPressed: () => pushPage(
-                      c,
-                      (BuildContext context, _, __) => VerticalScrollView(
+                    onPressed: () => pushOverscrollRoute(
+                      context: c,
+                      scrollToPopOption: ScrollToPopOption.both,
+                      child: VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.both,
                       ),
                     ),
@@ -92,9 +95,11 @@ class _MyAppState extends State<MyApp> {
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: '${ScrollToPopOption.start}${DragToPopDirection.toLeft}',
                   child: ElevatedButton(
-                    onPressed: () => pushPage(
-                      c,
-                      (BuildContext context, _, __) => VerticalScrollView(
+                    onPressed: () => pushOverscrollRoute(
+                      context: c,
+                      scrollToPopOption: ScrollToPopOption.start,
+                      dragToPopDirection: DragToPopDirection.toLeft,
+                      child: VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                         dragToPopDirection: DragToPopDirection.toLeft,
                       ),
@@ -116,9 +121,11 @@ class _MyAppState extends State<MyApp> {
                   tag:
                       '${ScrollToPopOption.start}${DragToPopDirection.toRight}',
                   child: ElevatedButton(
-                    onPressed: () => pushPage(
-                      c,
-                      (BuildContext context, _, __) => VerticalScrollView(
+                    onPressed: () => pushOverscrollRoute(
+                      context: c,
+                      scrollToPopOption: ScrollToPopOption.start,
+                      dragToPopDirection: DragToPopDirection.toRight,
+                      child: VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                         dragToPopDirection: DragToPopDirection.toRight,
                       ),
@@ -140,9 +147,11 @@ class _MyAppState extends State<MyApp> {
                   tag:
                       '${ScrollToPopOption.start}${DragToPopDirection.horizontal}',
                   child: ElevatedButton(
-                    onPressed: () => pushPage(
-                      c,
-                      (BuildContext context, _, __) => VerticalScrollView(
+                    onPressed: () => pushOverscrollRoute(
+                      context: c,
+                      scrollToPopOption: ScrollToPopOption.start,
+                      dragToPopDirection: DragToPopDirection.horizontal,
+                      child: VerticalScrollView(
                         scrollToPopOption: ScrollToPopOption.start,
                         dragToPopDirection: DragToPopDirection.horizontal,
                       ),
@@ -158,16 +167,19 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 32.0),
+                const SizedBox(height: 48.0),
+                ////////////////////////////////////////////////
                 Hero(
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.start}',
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollView(
-                        scrollToPopOption: ScrollToPopOption.start,
-                      ),
+                      HorizontalScrollView(
+                          scrollToPopOption: ScrollToPopOption.start),
                     ),
                     child: Text(
                         'Horizontal scroll view ${ScrollToPopOption.start}'),
@@ -178,11 +190,13 @@ class _MyAppState extends State<MyApp> {
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.end}',
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollView(
-                        scrollToPopOption: ScrollToPopOption.end,
-                      ),
+                      HorizontalScrollView(
+                          scrollToPopOption: ScrollToPopOption.end),
                     ),
                     child:
                         Text('Horizontal scroll view ${ScrollToPopOption.end}'),
@@ -193,11 +207,13 @@ class _MyAppState extends State<MyApp> {
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.both}',
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollView(
-                        scrollToPopOption: ScrollToPopOption.both,
-                      ),
+                      HorizontalScrollView(
+                          scrollToPopOption: ScrollToPopOption.both),
                     ),
                     child: Text(
                         'Horizontal scroll view ${ScrollToPopOption.both}'),
@@ -208,9 +224,12 @@ class _MyAppState extends State<MyApp> {
                   createRectTween: HeroAnimationAsset.customTweenRect,
                   tag: 'h ${ScrollToPopOption.end}${DragToPopDirection.toTop}',
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollView(
+                      HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                         dragToPopDirection: DragToPopDirection.toTop,
                       ),
@@ -232,9 +251,12 @@ class _MyAppState extends State<MyApp> {
                   tag:
                       'h ${ScrollToPopOption.end}${DragToPopDirection.toBottom}',
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollView(
+                      HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                         dragToPopDirection: DragToPopDirection.toBottom,
                       ),
@@ -256,9 +278,12 @@ class _MyAppState extends State<MyApp> {
                   tag:
                       'h ${ScrollToPopOption.end}${DragToPopDirection.vertical}',
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                    ),
                     onPressed: () => pushPage(
                       c,
-                      (BuildContext context, _, __) => HorizontalScrollView(
+                      HorizontalScrollView(
                         scrollToPopOption: ScrollToPopOption.end,
                         dragToPopDirection: DragToPopDirection.vertical,
                       ),
@@ -288,14 +313,14 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void pushPage(BuildContext context, RoutePageBuilder builder) =>
+  void pushPage(BuildContext context, Widget child) =>
       Navigator.of(context).push(
         PageRouteBuilder(
           opaque: false,
           transitionsBuilder:
               (_, Animation<double> animation, __, Widget child) =>
                   FadeTransition(opacity: animation, child: child),
-          pageBuilder: builder,
+          pageBuilder: (_, __, ___) => child,
         ),
       );
 

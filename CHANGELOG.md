@@ -1,3 +1,8 @@
+## 0.0.8
+
+* Add ScrollToPopOption.none
+* Add ScrollToPopOption and DragToPopDirection to pushOverscrollRoute helper
+
 ## 0.0.7
 
 * Add push route helper

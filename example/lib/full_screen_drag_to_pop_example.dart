@@ -28,9 +28,9 @@ class FullScreenDragToPopExample extends StatelessWidget {
         ),
         itemBuilder: (_, int index) => GestureDetector(
           onTap: () => pushDragToPopRoute(
+            fullscreenDialog: true,
             context: context,
             child: FullScreenDetail(url: images[index]),
-
           ),
           child: Hero(
             tag: images[index],
