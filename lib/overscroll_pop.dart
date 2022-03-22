@@ -24,6 +24,7 @@ class OverscrollPop extends StatefulWidget {
   final bool enable;
   final DragToPopDirection? dragToPopDirection;
   final ScrollToPopOption scrollToPopOption;
+  final double friction;
 
   const OverscrollPop({
     Key? key,
@@ -31,6 +32,7 @@ class OverscrollPop extends StatefulWidget {
     this.dragToPopDirection,
     this.scrollToPopOption = ScrollToPopOption.start,
     this.enable = true,
+    this.friction = 1.0,
   }) : super(key: key);
 
   @override
@@ -160,8 +162,8 @@ class _OverscrollPopState extends State<OverscrollPop>
       }
 
       final velocity = dragEndDetails.velocity.pixelsPerSecond;
-      final velocityY = velocity.dy;
-      final velocityX = velocity.dx;
+      final velocityY = velocity.dy / widget.friction / widget.friction;
+      final velocityX = velocity.dx / widget.friction / widget.friction;
 
       if (velocityY.abs() > 150.0 || velocityX.abs() > 200.0) {
         Navigator.of(context).pop();
@@ -215,10 +217,10 @@ class _OverscrollPopState extends State<OverscrollPop>
     final currentPosition = dragUpdateDetails.globalPosition;
     final previousPosition = _previousPosition!;
 
-    final newX =
-        (_dragOffset?.dx ?? 0.0) + (currentPosition.dx - previousPosition.dx);
-    final newY =
-        (_dragOffset?.dy ?? 0.0) + (currentPosition.dy - previousPosition.dy);
+    final newX = (_dragOffset?.dx ?? 0.0) +
+        (currentPosition.dx - previousPosition.dx) / widget.friction;
+    final newY = (_dragOffset?.dy ?? 0.0) +
+        (currentPosition.dy - previousPosition.dy) / widget.friction;
     _previousPosition = currentPosition;
     setState(() {
       _dragOffset = Offset(newX, newY);
