@@ -44,15 +44,8 @@ class OverscrollPop extends StatefulWidget {
 
 class _OverscrollPopState extends State<OverscrollPop>
     with SingleTickerProviderStateMixin {
-  late final AnimationController? _animationController = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 200),
-  )..addStatusListener(_onAnimationEnd);
-
-  late Animation<Offset> _animation = Tween<Offset>(
-    begin: Offset.zero,
-    end: Offset.zero,
-  ).animate(_animationController!);
+  late final AnimationController? _animationController;
+  late Animation<Offset> _animation;
 
   Offset? _dragOffset;
   Offset? _previousPosition;
@@ -60,9 +53,29 @@ class _OverscrollPopState extends State<OverscrollPop>
   bool _isDraggingToPop = false;
 
   @override
+  void initState() {
+    if (widget.enable) {
+      _animationController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 200),
+      )..addStatusListener(_onAnimationEnd);
+
+      _animation = Tween<Offset>(
+        begin: Offset.zero,
+        end: Offset.zero,
+      ).animate(_animationController!);
+    }
+
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    _animationController?.removeStatusListener(_onAnimationEnd);
-    _animationController?.dispose();
+    if (widget.enable) {
+      _animationController?.removeStatusListener(_onAnimationEnd);
+      _animationController?.dispose();
+    }
+
     super.dispose();
   }
 
