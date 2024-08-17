@@ -438,9 +438,7 @@ Future<dynamic> pushDragToPopRoute({
 
           return FadeTransition(opacity: animation, child: child);
         },
-        pageBuilder: (_, __, ___) => DragToPop(
-          child: child,
-        ),
+        pageBuilder: (_, __, ___) => DragToPop(child: child),
         maintainState: maintainState,
         barrierColor: barrierColor,
         barrierLabel: barrierLabel,
