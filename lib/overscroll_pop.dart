@@ -358,6 +358,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 Future<dynamic> pushOverscrollRoute({
   required BuildContext context,
   required Widget child,
+  BorderRadius? borderRadius,
   ScrollToPopOption scrollToPopOption = ScrollToPopOption.start,
   DragToPopDirection? dragToPopDirection,
   bool fullscreenDialog = false,
@@ -397,6 +398,7 @@ Future<dynamic> pushOverscrollRoute({
           dragToPopDirection: dragToPopDirection,
           scrollToPopOption: scrollToPopOption,
           child: child,
+          borderRadius: borderRadius,
         ),
         maintainState: maintainState,
         barrierColor: barrierColor,
