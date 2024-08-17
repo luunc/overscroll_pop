@@ -10,6 +10,7 @@ export 'package:overscroll_pop/drag_to_pop.dart';
 //////////////////////////////////////////////////////////////////////////////
 
 enum ScrollToPopOption { start, end, both, none }
+
 enum DragToPopDirection {
   toTop,
   toBottom,
@@ -25,6 +26,7 @@ class OverscrollPop extends StatefulWidget {
   final DragToPopDirection? dragToPopDirection;
   final ScrollToPopOption scrollToPopOption;
   final double friction;
+  final BorderRadius? borderRadius;
 
   const OverscrollPop({
     Key? key,
@@ -33,6 +35,7 @@ class OverscrollPop extends StatefulWidget {
     this.scrollToPopOption = ScrollToPopOption.start,
     this.enable = true,
     this.friction = 1.0,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -123,7 +126,7 @@ class _OverscrollPopState extends State<OverscrollPop>
                 1.0 - (finalOffset.dx / 1200).abs(),
               );
 
-        return Container(
+        return ColoredBox(
           color: Colors.black.withOpacity(bgOpacity.clamp(0.0, 1.0)),
           child: Transform.scale(
             scale: scale,
@@ -134,7 +137,10 @@ class _OverscrollPopState extends State<OverscrollPop>
           ),
         );
       },
-      child: childWidget,
+      child: ClipRRect(
+        borderRadius: widget.borderRadius ?? BorderRadius.zero,
+        child: childWidget,
+      ),
     );
   }
 
@@ -432,7 +438,9 @@ Future<dynamic> pushDragToPopRoute({
 
           return FadeTransition(opacity: animation, child: child);
         },
-        pageBuilder: (_, __, ___) => DragToPop(child: child),
+        pageBuilder: (_, __, ___) => DragToPop(
+          child: child,
+        ),
         maintainState: maintainState,
         barrierColor: barrierColor,
         barrierLabel: barrierLabel,
