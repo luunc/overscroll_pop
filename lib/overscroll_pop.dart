@@ -126,21 +126,25 @@ class _OverscrollPopState extends State<OverscrollPop>
                 1.0 - (finalOffset.dx / 1200).abs(),
               );
 
+        final hasBorderRadius = widget.borderRadius != null;
+
         return ColoredBox(
           color: Colors.black.withOpacity(bgOpacity.clamp(0.0, 1.0)),
           child: Transform.scale(
             scale: scale,
             child: Transform.translate(
               offset: finalOffset,
-              child: child,
+              child: ClipRRect(
+                borderRadius: hasBorderRadius
+                    ? widget.borderRadius! * (1.0 - bgOpacity.clamp(0.0, 1.0))
+                    : BorderRadius.zero,
+                child: child,
+              ),
             ),
           ),
         );
       },
-      child: ClipRRect(
-        borderRadius: widget.borderRadius ?? BorderRadius.zero,
-        child: childWidget,
-      ),
+      child: childWidget,
     );
   }
 
