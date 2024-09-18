@@ -39,7 +39,7 @@ class OverscrollPop extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _OverscrollPopState createState() => _OverscrollPopState();
+  State<OverscrollPop> createState() => _OverscrollPopState();
 }
 
 class _OverscrollPopState extends State<OverscrollPop>
@@ -57,7 +57,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
     )..addStatusListener(_onAnimationEnd);
     _animation = Tween<Offset>(
       begin: Offset.zero,
@@ -90,7 +90,7 @@ class _OverscrollPopState extends State<OverscrollPop>
 
     if (!widget.enable) return childWidget;
 
-    if (widget.dragToPopDirection != null)
+    if (widget.dragToPopDirection != null) {
       childWidget = GestureDetector(
         onHorizontalDragStart: getOnHorizontalDragStartFunction(),
         onHorizontalDragUpdate: getOnHorizontalDragUpdateFunction(),
@@ -100,8 +100,9 @@ class _OverscrollPopState extends State<OverscrollPop>
         onVerticalDragEnd: getOnVerticalDragEndFunction(),
         child: widget.child,
       );
+    }
 
-    if (widget.scrollToPopOption != ScrollToPopOption.none)
+    if (widget.scrollToPopOption != ScrollToPopOption.none) {
       childWidget = NotificationListener<OverscrollNotification>(
         onNotification: _onOverScrollDragUpdate,
         child: NotificationListener<ScrollNotification>(
@@ -109,15 +110,17 @@ class _OverscrollPopState extends State<OverscrollPop>
           child: childWidget,
         ),
       );
+    }
 
     return AnimatedBuilder(
       animation: _animation,
       builder: (_, Widget? child) {
-        Offset finalOffset = _dragOffset ?? Offset(0.0, 0.0);
-        if (_animation.status == AnimationStatus.forward)
+        Offset finalOffset = _dragOffset ?? const Offset(0.0, 0.0);
+        if (_animation.status == AnimationStatus.forward) {
           finalOffset = _animation.value;
+        }
 
-        final maxOpacityWhenDrag = 0.75;
+        const maxOpacityWhenDrag = 0.75;
         final bgOpacity = finalOffset.distance == 0.0
             ? 1.0
             : math.min(
@@ -133,16 +136,17 @@ class _OverscrollPopState extends State<OverscrollPop>
               );
 
         final hasBorderRadius = widget.borderRadius != null;
+        final opacity = bgOpacity.clamp(0.0, 1.0);
 
         return ColoredBox(
-          color: Colors.black.withOpacity(bgOpacity.clamp(0.0, 1.0)),
+          color: Colors.black.withOpacity(opacity),
           child: Transform.scale(
             scale: scale,
             child: Transform.translate(
               offset: finalOffset,
               child: ClipRRect(
                 borderRadius: hasBorderRadius
-                    ? widget.borderRadius! * (1.0 - bgOpacity.clamp(0.0, 1.0))
+                    ? widget.borderRadius! * (1.0 - opacity)
                     : BorderRadius.zero,
                 child: child,
               ),
@@ -155,11 +159,13 @@ class _OverscrollPopState extends State<OverscrollPop>
   }
 
   bool _onScroll(ScrollNotification scrollNotification) {
-    if (scrollNotification is ScrollEndNotification)
+    if (scrollNotification is ScrollEndNotification) {
       return _onOverScrollDragEnd(scrollNotification.dragDetails);
+    }
 
-    if (scrollNotification is ScrollUpdateNotification)
+    if (scrollNotification is ScrollUpdateNotification) {
       return _onScrollDragUpdate(scrollNotification.dragDetails);
+    }
 
     return false;
   }
@@ -190,7 +196,7 @@ class _OverscrollPopState extends State<OverscrollPop>
     setState(() {
       _animation = Tween<Offset>(
         begin: Offset(dragOffset.dx, dragOffset.dy),
-        end: Offset(0.0, 0.0),
+        end: const Offset(0.0, 0.0),
       ).animate(_animationController);
     });
 
@@ -389,7 +395,7 @@ Future<dynamic> pushOverscrollRoute({
           Widget child,
         ) {
           if (animation.status == AnimationStatus.reverse ||
-              animation.status == AnimationStatus.dismissed)
+              animation.status == AnimationStatus.dismissed) {
             return FadeTransition(
               opacity: CurvedAnimation(
                 parent: animation,
@@ -397,14 +403,15 @@ Future<dynamic> pushOverscrollRoute({
               ),
               child: child,
             );
+          }
 
           return FadeTransition(opacity: animation, child: child);
         },
         pageBuilder: (_, __, ___) => OverscrollPop(
           dragToPopDirection: dragToPopDirection,
           scrollToPopOption: scrollToPopOption,
-          child: child,
           borderRadius: borderRadius,
+          child: child,
         ),
         maintainState: maintainState,
         barrierColor: barrierColor,
@@ -439,7 +446,7 @@ Future<dynamic> pushDragToPopRoute({
           Widget child,
         ) {
           if (animation.status == AnimationStatus.reverse ||
-              animation.status == AnimationStatus.dismissed)
+              animation.status == AnimationStatus.dismissed) {
             return FadeTransition(
               opacity: CurvedAnimation(
                 parent: animation,
@@ -447,6 +454,7 @@ Future<dynamic> pushDragToPopRoute({
               ),
               child: child,
             );
+          }
 
           return FadeTransition(opacity: animation, child: child);
         },

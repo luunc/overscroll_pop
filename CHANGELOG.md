@@ -1,3 +1,12 @@
+## 0.1.1
+
+* Support newer Android version and AGP >=8.0.0 compatibility [#9](https://github.com/luunc/overscroll_pop/pull/9) (thanks to [Salih Can](https://github.com/SalihCanBinboga))
+
+## 0.1.0
+
+* Border radius support
+* Refactor
+
 ## 0.0.9
 
 * Upgrade SDK version

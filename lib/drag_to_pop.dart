@@ -13,34 +13,34 @@ class DragToPop extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DragToPopState createState() => _DragToPopState();
+  State<DragToPop> createState() => _DragToPopState();
 }
 
 class _DragToPopState extends State<DragToPop>
     with SingleTickerProviderStateMixin {
-  late final AnimationController? _animationController = AnimationController(
+  late final AnimationController _animationController = AnimationController(
     vsync: this,
-    duration: Duration(milliseconds: 200),
+    duration: const Duration(milliseconds: 200),
   )..addStatusListener(_onAnimationEnd);
 
   late Animation<Offset> _animation = Tween<Offset>(
     begin: Offset.zero,
     end: Offset.zero,
-  ).animate(_animationController!);
+  ).animate(_animationController);
 
   Offset? _dragOffset;
   Offset? _previousPosition;
 
   @override
   void dispose() {
-    _animationController?.removeStatusListener(_onAnimationEnd);
-    _animationController?.dispose();
+    _animationController.removeStatusListener(_onAnimationEnd);
+    _animationController.dispose();
     super.dispose();
   }
 
   void _onAnimationEnd(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
-      _animationController?.reset();
+      _animationController.reset();
       setState(() {
         _dragOffset = null;
         _previousPosition = null;
@@ -55,11 +55,12 @@ class _DragToPopState extends State<DragToPop>
     return AnimatedBuilder(
       animation: _animation,
       builder: (_, Widget? child) {
-        Offset finalOffset = _dragOffset ?? Offset(0.0, 0.0);
-        if (_animation.status == AnimationStatus.forward)
+        Offset finalOffset = _dragOffset ?? const Offset(0.0, 0.0);
+        if (_animation.status == AnimationStatus.forward) {
           finalOffset = _animation.value;
+        }
 
-        final maxOpacityWhenDrag = 0.75;
+        const maxOpacityWhenDrag = 0.75;
         final bgOpacity = finalOffset.distance == 0.0
             ? 1.0
             : math.min(
@@ -144,10 +145,10 @@ class _DragToPopState extends State<DragToPop>
     setState(() {
       _animation = Tween<Offset>(
         begin: Offset(dragOffset.dx, dragOffset.dy),
-        end: Offset(0.0, 0.0),
-      ).animate(_animationController!);
+        end: const Offset(0.0, 0.0),
+      ).animate(_animationController);
     });
 
-    _animationController?.forward();
+    _animationController.forward();
   }
 }

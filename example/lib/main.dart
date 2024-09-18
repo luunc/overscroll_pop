@@ -174,7 +174,7 @@ class _MyAppState extends State<MyApp> {
                   tag: 'h ${ScrollToPopOption.start}',
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: WidgetStateProperty.all(Colors.amber),
                     ),
                     onPressed: () => pushPage(
                       c,
@@ -191,7 +191,7 @@ class _MyAppState extends State<MyApp> {
                   tag: 'h ${ScrollToPopOption.end}',
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: WidgetStateProperty.all(Colors.amber),
                     ),
                     onPressed: () => pushPage(
                       c,
@@ -208,7 +208,7 @@ class _MyAppState extends State<MyApp> {
                   tag: 'h ${ScrollToPopOption.both}',
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: WidgetStateProperty.all(Colors.amber),
                     ),
                     onPressed: () => pushPage(
                       c,
@@ -225,7 +225,7 @@ class _MyAppState extends State<MyApp> {
                   tag: 'h ${ScrollToPopOption.end}${DragToPopDirection.toTop}',
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: WidgetStateProperty.all(Colors.amber),
                     ),
                     onPressed: () => pushPage(
                       c,
@@ -252,7 +252,7 @@ class _MyAppState extends State<MyApp> {
                       'h ${ScrollToPopOption.end}${DragToPopDirection.toBottom}',
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: WidgetStateProperty.all(Colors.amber),
                     ),
                     onPressed: () => pushPage(
                       c,
@@ -279,7 +279,7 @@ class _MyAppState extends State<MyApp> {
                       'h ${ScrollToPopOption.end}${DragToPopDirection.vertical}',
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.amber),
+                      backgroundColor: WidgetStateProperty.all(Colors.amber),
                     ),
                     onPressed: () => pushPage(
                       c,
